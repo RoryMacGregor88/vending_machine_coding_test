@@ -20,6 +20,16 @@ VendingMachine.prototype.returnCoins = function() {
   return money;
 };
 
+VendingMachine.prototype.getItemPrice = function(item) {
+  if (item === 'a') {
+    return 65;
+  } else if (item === 'b') {
+    return 100;
+  } else {
+    return 150;
+  };
+};
+
 let assert = require('assert');
 
 describe('Vending Machine', function () {
@@ -43,6 +53,13 @@ describe('Vending Machine', function () {
           machine.insertCoin(dime);
           assert.strictEqual(15, machine.returnCoins());
           assert.strictEqual(0, machine.getBalance());
+        });
+
+        it('Selects an item', function() {
+          const dollar = 100;
+          const b = 'b';
+          machine = new VendingMachine();
+          assert.strictEqual(100, machine.getItemPrice(b))
         });
     });
 
